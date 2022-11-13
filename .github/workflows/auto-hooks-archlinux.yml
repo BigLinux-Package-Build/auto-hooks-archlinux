@@ -203,6 +203,8 @@ jobs:
       - name: install keyrings
         shell: bash
         run: |
+          sudo install -dm755 /usr/share/pacman/keyrings/
+          
           mkdir -p archlinux-keyring
           pushd archlinux-keyring
             wget https://archlinux.org/packages/core/any/archlinux-keyring/download -O /tmp/archlinux-keyring.tar.zst
@@ -212,6 +214,7 @@ jobs:
             sudo install -m0644 archlinux-revoked /usr/share/pacman/keyrings/
           popd
           sudo rm -rf archlinux-keyring
+          
           sudo git clone --depth 1 https://github.com/biglinux/biglinux-keyring.git
           pushd biglinux-keyring
             sudo install -m0644 biglinux.gpg /usr/share/pacman/keyrings/
