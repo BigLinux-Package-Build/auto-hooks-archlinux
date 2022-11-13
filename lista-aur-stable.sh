@@ -40,16 +40,10 @@ for i in $(cat lista-auto-update); do pkgname=$i
         fi
         
         #versão do repositorio do biglinux
-        if [ "$REPO" = "testing" ]; then
-            repo=biglinux-testing
-        elif [ "$REPO" = "stable" ]; then
-            repo=biglinux-stable
-        fi
+        repo=biglinux-archlinux
+        
         verrepo=
         verrepo=$(pacman -Ss $pkgname | grep $repo | grep -v "$pkgname-" | grep -v "\-$pkgname" | grep "$pkgname" | cut -d " " -f2 | cut -d ":" -f2)
-        if [ "$veraur" != "$verrepo" ]; then
-            verrepo=$(pacman -Ss $pkgname | grep biglinux-stable | grep -v "$pkgname-" | grep -v "\-$pkgname" | grep "$pkgname" | cut -d " " -f2 | cut -d ":" -f2)
-        fi
         
         #se versão do AUR foi maior que a versão do repo local
         if [ "$veraur" != "$verrepo" ]; then
