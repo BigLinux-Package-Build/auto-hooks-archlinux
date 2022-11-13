@@ -236,15 +236,15 @@ jobs:
           sudo cp -r biglinux-key/usr/share/pacman/keyrings/* /etc/pacman.d/gnupg/
           sudo rm -r biglinux-key
       
-      # - name: Send Hooks
-      #   shell: bash
-      #   run: |
-      #     sudo pacman -Sy
-      #     find -type f -iname "*.sh" -maxdepth 1 -exec bash {} \;
-      #   env:
-      #     CHAVE: ${{ secrets.WEBHOOK_TOKEN }}
-      #     REPO: stable
+      - name: Send Hooks
+        shell: bash
+        run: |
+          sudo pacman -Sy
+          find -type f -iname "*.sh" -maxdepth 1 -exec bash {} \;
+        env:
+          CHAVE: ${{ secrets.WEBHOOK_TOKEN }}
+          REPO: stable
       
-      ## Tmate ##
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3 
+      # ## Tmate ##
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3 
