@@ -43,7 +43,7 @@ for i in $(cat lista-auto-update); do pkgname=$i
         repo=biglinux-archlinux
         
         verrepo=
-        verrepo=$(pacman -Ss $pkgname | grep $repo | grep -v "$pkgname-" | grep -v "\-$pkgname" | grep "$pkgname" | cut -d " " -f2 | cut -d ":" -f2)
+        verrepo=$(pacman -Ss $pkgname | grep $repo | grep -v "$pkgname-" | grep -v "\-$pkgname" | grep -w "$pkgname" | cut -d " " -f2 | cut -d ":" -f2)
         
         #se versão do AUR foi maior que a versão do repo local
         if [ "$veraur" != "$verrepo" ]; then
